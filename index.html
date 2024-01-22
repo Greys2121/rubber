@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasma Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #bigTitle {
+            text-align: center;
+            font-size: 3em;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        #fullscreenButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+        #iframeContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        #websiteIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="bigTitle">Plasma</div>
+    <button id="fullscreenButton" onclick="loadNewWebsite()">Load Different Website</button>
+
+    <div id="iframeContainer">
+        <iframe id="websiteIframe" src="" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function loadNewWebsite() {
+            // Execute the provided JavaScript code
+            var url = prompt('What site do you want to embed into ' + location.href + '?');
+            var prefix = 'https://';
+            if (url && url.substr(0, prefix.length) !== prefix) {
+                url = prefix + url;
+            }
+            var ifra = document.createElement('iframe');
+            ifra.src = url;
+            ifra.setAttribute('height', '770');
+            ifra.setAttribute('width', '1365');
+            void (document.body.appendChild(ifra));
+
+            // Display the iframe container
+            document.getElementById('iframeContainer').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
